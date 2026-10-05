@@ -1,11 +1,24 @@
 extends Node3D
 
+enum STATES {
+	BACK,
+	DOOR,
+	WINDOW,
+	PEEPHOLE
+}
 
-# Called when the node enters the scene tree for the first time.
+var state: STATES = STATES.BACK
+
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
+	
+func _process(delta: float) -> void:
+	match state:
+		STATES.BACK:
+			pass
+		STATES.DOOR:
+			pass
+		STATES.WINDOW:
+			pass
+		STATES.PEEPHOLE:
+			pass

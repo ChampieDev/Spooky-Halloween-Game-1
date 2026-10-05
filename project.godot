@@ -23,11 +23,15 @@ Global="*uid://dh1m4tg4we5gf"
 
 [display]
 
-window/size/viewport_width=854
-window/size/viewport_height=480
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[dotnet]
+
+project/assembly_name="Spooky Halloween Game"
 
 [physics]
 
