@@ -2,6 +2,13 @@ extends Node3D
 
 var obj_id: String = ""
 
+const TRAVEL_TIME: float = 0.5
+
+@onready var stairs: Marker3D = $StairsMarker
+@onready var window: Marker3D = $WindowMarker
+@onready var door: Marker3D = $DoorMarker
+
+
 const OBJ_STATES = {
 	"door": STATES.DOOR,
 	"window": STATES.WINDOW,
@@ -14,6 +21,13 @@ enum STATES {
 	DOOR,
 	STAIRS,
 	PEEPHOLE
+}
+
+const ALLOWED_TRANSITIONS = {
+	STATES.STAIRS: [STATES.DOOR, STATES.WINDOW],
+	STATES.DOOR: [STATES.STAIRS, STATES.PEEPHOLE],     # Can only go back to stairs or look at peephole
+	STATES.WINDOW: [STATES.STAIRS],                    # Can only go back to stairs
+	STATES.PEEPHOLE: [STATES.DOOR]                     # Can only step back to the door
 }
 
 var state: STATES = STATES.STAIRS
@@ -40,15 +54,18 @@ func _on_mouse_exited(collision_obj: CollisionShape3D):
 	obj_id = ""
 	
 func change_state(new_state: STATES):
-	var previous_state = state
+	
+	if not new_state in ALLOWED_TRANSITIONS[state]:
+		return
+	
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	state = new_state
-	var tween = create_tween()
 	match state:
 		STATES.WINDOW:
-			tween.tween_property($Player, "global_position", $WindowMarker.global_position, 0.25)
+			tween.tween_property($Player, "global_position", window.global_position, TRAVEL_TIME)
 		STATES.DOOR:
-			tween.tween_property($Player, "global_position", $DoorMarker.global_position, 0.25)
+			tween.tween_property($Player, "global_position", door.global_position, TRAVEL_TIME)
 		STATES.STAIRS:
-			tween.tween_property($Player, "global_position", $StairsMarker.global_position, 0.25)
+			tween.tween_property($Player, "global_position", stairs.global_position, TRAVEL_TIME)
 		STATES.PEEPHOLE:
 			pass
