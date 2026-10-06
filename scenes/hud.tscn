@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cd3vdqsof311q"]
+
+[ext_resource type="Script" uid="uid://cw7lj4e74k8rr" path="res://scripts/hud.gd" id="1_ahhtf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cl70"]
+size = Vector2(1280, 80)
+
+[node name="HUD" type="Control" unique_id=749604785]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ahhtf")
+
+[node name="MouseDetect" type="Area2D" parent="." unique_id=1172072711]
+position = Vector2(0, 720)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetect" unique_id=520854876]
+position = Vector2(640, -40)
+shape = SubResource("RectangleShape2D_3cl70")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1395372163]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="mouse_entered" from="MouseDetect" to="." method="_on_mouse_detect_mouse_entered"]
+[connection signal="mouse_exited" from="MouseDetect" to="." method="_on_mouse_detect_mouse_exited"]
