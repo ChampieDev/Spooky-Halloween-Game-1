@@ -1,6 +1,7 @@
 extends Node3D
 
 var obj_id: String = ""
+var can_change: bool = true
 
 const TRAVEL_TIME: float = 0.75
 
@@ -51,17 +52,27 @@ func _on_mouse_exited(collision_obj: CollisionShape3D):
 	
 func change_state(new_state: STATES):
 	
+	if not can_change:
+		return
+	
 	if not new_state in ALLOWED_TRANSITIONS[state]:
 		return
 	
 	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	state = new_state
+	can_change = false
 	match state:
 		STATES.DOOR:
+			Global.door_open.emit()
 			tween.tween_property($Player, "global_position", door.global_position, TRAVEL_TIME)
 			tween.tween_property($DoorHinge, "global_rotation:y", deg_to_rad(120.0), 0.25)
+			await tween.finished
+			can_change = true
 		STATES.STAIRS:
 			tween.tween_property($DoorHinge, "global_rotation:y", deg_to_rad(0.0), 0.25)
 			tween.tween_property($Player, "global_position", stairs.global_position, TRAVEL_TIME)
+			await tween.finished
+			can_change = true
+			Global.door_close.emit()
 		STATES.PEEPHOLE:
 			pass
