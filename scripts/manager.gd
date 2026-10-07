@@ -2,7 +2,7 @@ extends Node3D
 
 var obj_id: String = ""
 
-const TRAVEL_TIME: float = 0.5
+const TRAVEL_TIME: float = 0.75
 
 @onready var stairs: Marker3D = $StairsMarker
 @onready var door: Marker3D = $DoorMarker
@@ -54,7 +54,7 @@ func change_state(new_state: STATES):
 	if not new_state in ALLOWED_TRANSITIONS[state]:
 		return
 	
-	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	state = new_state
 	match state:
 		STATES.DOOR:
@@ -62,9 +62,8 @@ func change_state(new_state: STATES):
 			await tween.finished
 			play_anim("door_open")
 		STATES.STAIRS:
-			tween.tween_property($Player, "global_position", stairs.global_position, TRAVEL_TIME)
-			await tween.finished
 			play_anim("door_close")
+			tween.tween_property($Player, "global_position", stairs.global_position, TRAVEL_TIME)
 		STATES.PEEPHOLE:
 			pass
 			
