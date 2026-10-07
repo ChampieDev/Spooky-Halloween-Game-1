@@ -6,29 +6,30 @@
 [ext_resource type="PackedScene" uid="uid://4xb5ltsjikra" path="res://scenes/player.tscn" id="3_jyhfs"]
 [ext_resource type="Material" uid="uid://cjgj5fn3fqdb0" path="res://assets/art/textures/placeholder/house_placeholder.tres" id="3_sugp2"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sugp2"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tbgi4"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_jyhfs"]
-sky_material = SubResource("ProceduralSkyMaterial_sugp2")
+[sub_resource type="Sky" id="Sky_tefeu"]
+sky_material = SubResource("ProceduralSkyMaterial_tbgi4")
 
-[sub_resource type="Environment" id="Environment_tbgi4"]
+[sub_resource type="Environment" id="Environment_o6xl0"]
 background_mode = 2
-sky = SubResource("Sky_jyhfs")
+sky = SubResource("Sky_tefeu")
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pvwq"]
-size = Vector3(1, 1.5, 0.5)
+size = Vector3(1, 1.5, 0.001)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_p42fm"]
-size = Vector3(1, 1, 0.5)
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3cl70"]
+radius = 0.2
+height = 0.85
 
 [node name="Main" type="Node3D" unique_id=766030109]
 script = ExtResource("1_0wfyh")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1237200050]
-environment = SubResource("Environment_tbgi4")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1543322565]
+environment = SubResource("Environment_o6xl0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=992719823]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -39,53 +40,49 @@ shadow_enabled = true
 [node name="HUD" parent="CanvasLayer" unique_id=749604785 instance=ExtResource("2_tbgi4")]
 mouse_filter = 2
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=445362448]
-
-[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D" unique_id=499994908]
+[node name="Floor" type="CSGBox3D" parent="." unique_id=499994908]
 size = Vector3(10, 1, 10)
 material = ExtResource("1_o5qli")
 
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=445362448]
+
 [node name="MainWall" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1592164116]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.75)
-size = Vector3(6, 2, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5005001)
+size = Vector3(6, 2, 0.01)
 material = ExtResource("3_sugp2")
 
-[node name="WindowCutout" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1227770003]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, -1.7)
-operation = 2
-
 [node name="DoorCutout" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1032184083]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.25, -1.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -1.5)
 operation = 2
-size = Vector3(1, 1.5, 1)
+size = Vector3(1, 1.5, 0.6)
 
 [node name="Player" parent="." unique_id=416922472 instance=ExtResource("3_jyhfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0.5)
 
 [node name="DoorArea" type="Area3D" parent="." unique_id=1559321020]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
 
 [node name="DoorCollision" type="CollisionShape3D" parent="DoorArea" unique_id=837465530]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9802322e-08, 0.25, 0.49950004)
 shape = SubResource("BoxShape3D_7pvwq")
-
-[node name="WindowArea" type="Area3D" parent="." unique_id=1858796039]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, -2)
-
-[node name="WindowCollision" type="CollisionShape3D" parent="WindowArea" unique_id=1376463625]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
-shape = SubResource("BoxShape3D_p42fm")
 
 [node name="StairsMarker" type="Marker3D" parent="." unique_id=1341443413]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0.5)
 
-[node name="WindowMarker" type="Marker3D" parent="." unique_id=1038896185]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.2, -0.7)
-
 [node name="DoorMarker" type="Marker3D" parent="." unique_id=2102378780]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.2, -0.7)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.2, -0.8)
+
+[node name="FakePlayer" type="MeshInstance3D" parent="." unique_id=653637973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.9250001, -1)
+visible = false
+mesh = SubResource("CapsuleMesh_3cl70")
+
+[node name="DoorHinge" type="Node3D" parent="." unique_id=1957661997]
+transform = Transform3D(-0.50000006, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.50000006, -0.5, 1.2500001, -1.5)
+
+[node name="Door" type="CSGBox3D" parent="DoorHinge" unique_id=169669701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+size = Vector3(1, 1.5, 0.01)
 
 [connection signal="mouse_entered" from="DoorArea" to="." method="_on_door_area_mouse_entered"]
 [connection signal="mouse_exited" from="DoorArea" to="." method="_on_door_area_mouse_exited"]
-[connection signal="mouse_entered" from="WindowArea" to="." method="_on_window_area_mouse_entered"]
-[connection signal="mouse_exited" from="WindowArea" to="." method="_on_window_area_mouse_exited"]

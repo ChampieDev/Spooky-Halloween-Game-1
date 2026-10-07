@@ -5,28 +5,24 @@ var obj_id: String = ""
 const TRAVEL_TIME: float = 0.5
 
 @onready var stairs: Marker3D = $StairsMarker
-@onready var window: Marker3D = $WindowMarker
 @onready var door: Marker3D = $DoorMarker
 
 
 const OBJ_STATES = {
 	"door": STATES.DOOR,
-	"window": STATES.WINDOW,
 	"stairs": STATES.STAIRS,
 	"peephole": STATES.PEEPHOLE
 }
 
 enum STATES {
-	WINDOW,
 	DOOR,
 	STAIRS,
 	PEEPHOLE
 }
 
 const ALLOWED_TRANSITIONS = {
-	STATES.STAIRS: [STATES.DOOR, STATES.WINDOW],
-	STATES.DOOR: [STATES.STAIRS, STATES.PEEPHOLE],     # Can only go back to stairs or look at peephole
-	STATES.WINDOW: [STATES.STAIRS],                    # Can only go back to stairs
+	STATES.STAIRS: [STATES.DOOR],
+	STATES.DOOR: [STATES.STAIRS, STATES.PEEPHOLE],     # Can only go back to stairs or look at peephole                 # Can only go back to stairs
 	STATES.PEEPHOLE: [STATES.DOOR]                     # Can only step back to the door
 }
 
@@ -35,8 +31,6 @@ var state: STATES = STATES.STAIRS
 func _ready() -> void:
 	$DoorArea.mouse_entered.connect(_on_mouse_entered.bind($DoorArea/DoorCollision, "door"))
 	$DoorArea.mouse_exited.connect(_on_mouse_exited.bind($DoorArea/DoorCollision))
-	$WindowArea.mouse_entered.connect(_on_mouse_entered.bind($WindowArea/WindowCollision, "window"))
-	$WindowArea.mouse_exited.connect(_on_mouse_exited.bind($WindowArea/WindowCollision))
 	
 	Global.go_back.connect(change_state.bind(STATES.STAIRS))
 	
@@ -61,11 +55,11 @@ func change_state(new_state: STATES):
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	state = new_state
 	match state:
-		STATES.WINDOW:
-			tween.tween_property($Player, "global_position", window.global_position, TRAVEL_TIME)
 		STATES.DOOR:
 			tween.tween_property($Player, "global_position", door.global_position, TRAVEL_TIME)
+			Global.door_open.emit()
 		STATES.STAIRS:
 			tween.tween_property($Player, "global_position", stairs.global_position, TRAVEL_TIME)
+			Global.door_close.emit()
 		STATES.PEEPHOLE:
 			pass
