@@ -39,17 +39,28 @@ shadow_enabled = true
 [node name="HUD" parent="CanvasLayer" unique_id=749604785 instance=ExtResource("2_tbgi4")]
 mouse_filter = 2
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=499994908]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=445362448]
+
+[node name="Floor" type="CSGBox3D" parent="CSGCombiner3D" unique_id=499994908]
 size = Vector3(10, 1, 10)
 material = ExtResource("1_o5qli")
 
-[node name="Player" parent="." unique_id=416922472 instance=ExtResource("3_jyhfs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0.5)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1592164116]
+[node name="MainWall" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1592164116]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.75)
 size = Vector3(6, 2, 0.5)
 material = ExtResource("3_sugp2")
+
+[node name="WindowCutout" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1227770003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, -1.7)
+operation = 2
+
+[node name="DoorCutout" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1032184083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.25, -1.7)
+operation = 2
+size = Vector3(1, 1.5, 1)
+
+[node name="Player" parent="." unique_id=416922472 instance=ExtResource("3_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0.5)
 
 [node name="DoorArea" type="Area3D" parent="." unique_id=1559321020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -2)
