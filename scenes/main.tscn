@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cd3vdqsof311q" path="res://scenes/hud.tscn" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://4xb5ltsjikra" path="res://scenes/player.tscn" id="3_jyhfs"]
 [ext_resource type="Material" uid="uid://cjgj5fn3fqdb0" path="res://assets/art/textures/placeholder/house_placeholder.tres" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dcm5vrhoi5hhv" path="res://scenes/monster.tscn" id="6_tefeu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tbgi4"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -14,7 +15,7 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_tbgi4")
 
 [sub_resource type="Environment" id="Environment_o6xl0"]
-background_mode = 2
+background_mode = 1
 sky = SubResource("Sky_tefeu")
 glow_enabled = true
 
@@ -37,7 +38,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 2.0943952, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_tefeu"]
@@ -97,14 +98,15 @@ shadow_enabled = true
 mouse_filter = 2
 
 [node name="Floor" type="CSGBox3D" parent="." unique_id=499994908]
-size = Vector3(10, 1, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5)
+size = Vector3(10, 1, 23)
 material = ExtResource("1_o5qli")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=445362448]
 
 [node name="MainWall" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1592164116]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.5005001)
-size = Vector3(6, 2, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.4555001)
+size = Vector3(6, 2, 0.099999994)
 material = ExtResource("3_sugp2")
 
 [node name="DoorCutout" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1032184083]
@@ -126,7 +128,7 @@ shape = SubResource("BoxShape3D_7pvwq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0.5)
 
 [node name="DoorMarker" type="Marker3D" parent="." unique_id=2102378780]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.2, -0.8)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.2, -0.7)
 
 [node name="FakePlayer" type="MeshInstance3D" parent="." unique_id=653637973]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.9250001, -1)
@@ -134,14 +136,24 @@ visible = false
 mesh = SubResource("CapsuleMesh_3cl70")
 
 [node name="DoorHinge" type="Node3D" parent="." unique_id=1957661997]
-transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50000006, -0.5, 1.2500001, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.2500001, -1.5)
 
 [node name="Door" type="CSGBox3D" parent="DoorHinge" unique_id=169669701]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
-size = Vector3(1, 1.5, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.044999957)
+size = Vector3(1, 1.5, 0.099999994)
 
 [node name="anims" type="AnimationPlayer" parent="." unique_id=868068448]
 libraries/ = SubResource("AnimationLibrary_o6xl0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1159176286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+light_color = Color(1, 1, 0.8039216, 1)
+light_energy = 1.865
+omni_range = 3.3
+omni_attenuation = 1.5
+
+[node name="Monster" parent="." unique_id=1469781036 instance=ExtResource("6_tefeu")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, -16)
 
 [connection signal="mouse_entered" from="DoorArea" to="." method="_on_door_area_mouse_entered"]
 [connection signal="mouse_exited" from="DoorArea" to="." method="_on_door_area_mouse_exited"]
