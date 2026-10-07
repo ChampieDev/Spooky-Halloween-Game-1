@@ -34,6 +34,8 @@ func _ready() -> void:
 	
 	Global.go_back.connect(change_state.bind(STATES.STAIRS))
 	
+	play_anim("door_close")
+	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("select") and obj_id in OBJ_STATES:
 		print(obj_id)
@@ -57,9 +59,14 @@ func change_state(new_state: STATES):
 	match state:
 		STATES.DOOR:
 			tween.tween_property($Player, "global_position", door.global_position, TRAVEL_TIME)
-			Global.door_open.emit()
+			await tween.finished
+			play_anim("door_open")
 		STATES.STAIRS:
 			tween.tween_property($Player, "global_position", stairs.global_position, TRAVEL_TIME)
-			Global.door_close.emit()
+			await tween.finished
+			play_anim("door_close")
 		STATES.PEEPHOLE:
 			pass
+			
+func play_anim(anim_name: String):
+	$anims.play(anim_name)
