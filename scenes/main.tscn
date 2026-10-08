@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cd3vdqsof311q" path="res://scenes/hud.tscn" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://4xb5ltsjikra" path="res://scenes/player.tscn" id="3_jyhfs"]
 [ext_resource type="Material" uid="uid://cjgj5fn3fqdb0" path="res://assets/art/textures/placeholder/house_placeholder.tres" id="3_sugp2"]
+[ext_resource type="Material" uid="uid://c44mr47aqpvsl" path="res://assets/art/textures/placeholder/grass_placeholder.tres" id="4_o6xl0"]
+[ext_resource type="Material" uid="uid://cjte7wkkumgeq" path="res://assets/art/textures/placeholder/carpet_placeholder.tres" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://dcm5vrhoi5hhv" path="res://scenes/monster.tscn" id="6_tefeu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tbgi4"]
@@ -98,15 +100,30 @@ shadow_enabled = true
 mouse_filter = 2
 
 [node name="Floor" type="CSGBox3D" parent="." unique_id=499994908]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5)
-size = Vector3(10, 1, 23)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -13.5)
+size = Vector3(6, 1, 9)
+material = ExtResource("4_o6xl0")
+
+[node name="Floor3" type="CSGBox3D" parent="." unique_id=663375788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5.25)
+size = Vector3(6, 1, 7.5)
 material = ExtResource("1_o5qli")
+
+[node name="Floor4" type="CSGBox3D" parent="." unique_id=2101684246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.2500002)
+size = Vector3(10, 1, 7.5)
+material = ExtResource("5_tipki")
+
+[node name="Grass" type="CSGBox3D" parent="." unique_id=272171288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -9.75)
+size = Vector3(4, 1, 16.5)
+material = ExtResource("4_o6xl0")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=445362448]
 
 [node name="MainWall" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1592164116]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1.4555001)
-size = Vector3(6, 2, 0.099999994)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -1.4555001)
+size = Vector3(10, 3.5, 0.099999994)
 material = ExtResource("3_sugp2")
 
 [node name="DoorCutout" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1032184083]

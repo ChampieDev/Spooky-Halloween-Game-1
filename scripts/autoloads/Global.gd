@@ -7,3 +7,5 @@ signal go_back
 
 signal door_open
 signal door_close
+
+signal snap

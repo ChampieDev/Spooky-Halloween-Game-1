@@ -1,7 +1,9 @@
 extends Node3D
 
 var obj_id: String = ""
+
 var can_change: bool = true
+var can_snap: bool = false
 
 const TRAVEL_TIME: float = 0.75
 
@@ -23,8 +25,8 @@ enum STATES {
 
 const ALLOWED_TRANSITIONS = {
 	STATES.STAIRS: [STATES.DOOR],
-	STATES.DOOR: [STATES.STAIRS, STATES.PEEPHOLE],     # Can only go back to stairs or look at peephole                 # Can only go back to stairs
-	STATES.PEEPHOLE: [STATES.DOOR]                     # Can only step back to the door
+	STATES.DOOR: [STATES.STAIRS, STATES.PEEPHOLE],              # Can only go back to stairs
+	STATES.PEEPHOLE: [STATES.DOOR]
 }
 
 var state: STATES = STATES.STAIRS
@@ -36,11 +38,15 @@ func _ready() -> void:
 	Global.go_back.connect(change_state.bind(STATES.STAIRS))
 	
 	
-	
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("select") and obj_id in OBJ_STATES:
-		print(obj_id)
-		change_state(OBJ_STATES[obj_id])
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("select"):
+		if obj_id in OBJ_STATES:
+			change_state(OBJ_STATES[obj_id])
+			get_tree().root.set_input_as_handled()
+			
+		elif can_snap:
+			Global.snap.emit()
+			get_tree().root.set_input_as_handled()
 	
 func _on_mouse_entered(collision_obj: CollisionShape3D, id: String):
 	collision_obj.debug_color = Global.ON_COLOR
@@ -63,16 +69,16 @@ func change_state(new_state: STATES):
 	can_change = false
 	match state:
 		STATES.DOOR:
+			can_snap = true
 			Global.door_open.emit()
 			tween.tween_property($Player, "global_position", door.global_position, TRAVEL_TIME)
 			tween.tween_property($DoorHinge, "global_rotation:y", deg_to_rad(120.0), 0.25)
 			await tween.finished
 			can_change = true
 		STATES.STAIRS:
+			can_snap = false
 			tween.tween_property($DoorHinge, "global_rotation:y", deg_to_rad(0.0), 0.25)
 			tween.tween_property($Player, "global_position", stairs.global_position, TRAVEL_TIME)
 			await tween.finished
 			can_change = true
 			Global.door_close.emit()
-		STATES.PEEPHOLE:
-			pass
