@@ -44,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			change_state(OBJ_STATES[obj_id])
 			get_tree().root.set_input_as_handled()
 			
-		elif can_snap:
+		if can_snap:
 			Global.snap.emit()
 			get_tree().root.set_input_as_handled()
 	
@@ -69,12 +69,12 @@ func change_state(new_state: STATES):
 	can_change = false
 	match state:
 		STATES.DOOR:
-			can_snap = true
 			Global.door_open.emit()
 			tween.tween_property($Player, "global_position", door.global_position, TRAVEL_TIME)
 			tween.tween_property($DoorHinge, "global_rotation:y", deg_to_rad(120.0), 0.25)
 			await tween.finished
 			can_change = true
+			can_snap = true
 		STATES.STAIRS:
 			can_snap = false
 			tween.tween_property($DoorHinge, "global_rotation:y", deg_to_rad(0.0), 0.25)

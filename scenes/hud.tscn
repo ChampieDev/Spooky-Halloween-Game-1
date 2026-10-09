@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://cd3vdqsof311q"]
 
 [ext_resource type="Script" uid="uid://cw7lj4e74k8rr" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="Shader" uid="uid://cvko0murnoaw8" path="res://scenes/glitch.gdshader" id="2_oo0fn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cl70"]
 size = Vector2(1280, 80)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahhtf"]
+shader = ExtResource("2_oo0fn")
+shader_parameter/strength = 0.05000000074506
+shader_parameter/edge_falloff = true
+shader_parameter/distortion_amount = -0.08
 
 [sub_resource type="Animation" id="Animation_ahhtf"]
 length = 0.001
@@ -77,9 +84,13 @@ mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1694224589]
 modulate = Color(1, 1, 1, 0.21568628)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+material = SubResource("ShaderMaterial_ahhtf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="anims" type="AnimationPlayer" parent="." unique_id=734343401]
 libraries/ = SubResource("AnimationLibrary_5ysmq")
