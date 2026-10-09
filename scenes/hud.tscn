@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cw7lj4e74k8rr" path="res://scripts/hud.gd" id="1_ahhtf"]
 [ext_resource type="Shader" uid="uid://cvko0murnoaw8" path="res://scenes/glitch.gdshader" id="2_oo0fn"]
+[ext_resource type="AudioStream" uid="uid://bw8e5yhgtaqrs" path="res://assets/audio/camera.mp3" id="3_5ysmq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cl70"]
 size = Vector2(1280, 80)
@@ -94,6 +95,11 @@ grow_vertical = 2
 
 [node name="anims" type="AnimationPlayer" parent="." unique_id=734343401]
 libraries/ = SubResource("AnimationLibrary_5ysmq")
+
+[node name="Flash" type="AudioStreamPlayer" parent="." unique_id=1557229012]
+stream = ExtResource("3_5ysmq")
+volume_db = 4.0
+pitch_scale = 0.75
 
 [connection signal="mouse_entered" from="MouseDetect" to="." method="_on_mouse_detect_mouse_entered"]
 [connection signal="mouse_exited" from="MouseDetect" to="." method="_on_mouse_detect_mouse_exited"]

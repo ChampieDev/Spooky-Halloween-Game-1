@@ -70,15 +70,23 @@ func change_state(new_state: STATES):
 	match state:
 		STATES.DOOR:
 			Global.door_open.emit()
+			$Player/Footsteps.play()
 			tween.tween_property($Player, "global_position", door.global_position, TRAVEL_TIME)
+			$DoorOpen.play()
 			tween.tween_property($DoorHinge, "global_rotation:y", deg_to_rad(120.0), 0.25)
 			await tween.finished
+			$Ambience.volume_db = 2.0
+			$Player/Footsteps.stop()
 			can_change = true
 			can_snap = true
 		STATES.STAIRS:
 			can_snap = false
 			tween.tween_property($DoorHinge, "global_rotation:y", deg_to_rad(0.0), 0.25)
+			$DoorClose.play()
+			$Player/Footsteps.play()
 			tween.tween_property($Player, "global_position", stairs.global_position, TRAVEL_TIME)
+			$Ambience.volume_db = -15.0
 			await tween.finished
+			$Player/Footsteps.stop()
 			can_change = true
 			Global.door_close.emit()

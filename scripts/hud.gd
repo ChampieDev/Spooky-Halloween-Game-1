@@ -12,6 +12,7 @@ func _on_mouse_detect_mouse_exited() -> void:
 		
 func _take_picture():
 	$TextureRect.modulate.a = 0.216
+	$Flash.play()
 	await RenderingServer.frame_post_draw
 	var image = get_viewport().get_texture().get_image()
 	var texture = ImageTexture.create_from_image(image)
