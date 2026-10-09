@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b30romsiupuj1"]
+
+[ext_resource type="Texture2D" uid="uid://dwbavrpuxvnep" path="res://assets/art/textures/LbUJ38RE.png" id="1_1r43l"]
+
+[resource]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_1r43l")

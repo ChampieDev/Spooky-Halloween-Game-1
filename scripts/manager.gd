@@ -20,8 +20,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 func go_to_door():
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
+	$Player/Footsteps.play()
 	tween.tween_property($Player, "global_position", door.global_position, 0.75)
 	await tween.finished
+	$Player/Footsteps.stop()
 	tween.kill()
 	await get_tree().create_timer(0.25).timeout
 	open_door()
