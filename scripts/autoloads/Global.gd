@@ -9,3 +9,5 @@ signal door_open
 signal door_close
 
 signal snap
+
+signal reset

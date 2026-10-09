@@ -9,16 +9,16 @@ size = Vector2(1280, 80)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ahhtf"]
 shader = ExtResource("2_oo0fn")
-shader_parameter/strength = 0.05000000074506
+shader_parameter/strength = 0.0050000002375
 shader_parameter/edge_falloff = true
-shader_parameter/distortion_amount = -0.08
+shader_parameter/distortion_amount = 4.7499999933364734e-08
 
 [sub_resource type="Animation" id="Animation_ahhtf"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/path = NodePath("Flash2:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,7 +33,7 @@ resource_name = "camera_flash"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/path = NodePath("Flash2:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -73,7 +73,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1527672999]
+[node name="Flash2" type="ColorRect" parent="." unique_id=1527672999]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
