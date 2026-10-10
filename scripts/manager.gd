@@ -41,6 +41,7 @@ func open_door():
 	$anims.play("look_at_child")
 	can_change = true
 	can_snap = true
+	Global.start_dialogue.emit("Trick or Treat!!")
 			
 func _reset():
 	$DoorBell.play()

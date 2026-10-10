@@ -11,3 +11,5 @@ signal door_close
 signal snap
 
 signal reset
+
+signal start_dialogue(message: String)

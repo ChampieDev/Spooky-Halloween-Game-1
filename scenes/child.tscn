@@ -2,10 +2,76 @@
 
 [ext_resource type="Script" uid="uid://dluyl3qm1ulm6" path="res://scripts/child.gd" id="1_uwnm8"]
 [ext_resource type="PackedScene" uid="uid://ce7402v0li7wu" path="res://assets/art/trtr.blend" id="2_xoh2m"]
+[ext_resource type="Material" uid="uid://b30romsiupuj1" path="res://assets/art/textures/child_1.tres" id="3_3ejsn"]
+[ext_resource type="PackedScene" uid="uid://bb76jlnnxlk7u" path="res://assets/art/monster.glb" id="4_qapw4"]
+[ext_resource type="AudioStream" uid="uid://dc344ote5ecim" path="res://assets/audio/dragon-studio-boom-copyright-free-487662.mp3" id="5_kefvm"]
+[ext_resource type="AudioStream" uid="uid://i2pmpy4dapsc" path="res://assets/audio/universfield-horror-impact-454854.mp3" id="6_4f5vm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7pvwq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7pvwq"]
+
+[sub_resource type="Gradient" id="Gradient_qapw4"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3rl2d"]
+gradient = SubResource("Gradient_qapw4")
+
+[sub_resource type="Curve" id="Curve_3rl2d"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15859033, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qapw4"]
+curve = SubResource("Curve_3rl2d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qapw4"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_qapw4")
+color_ramp = SubResource("GradientTexture1D_3rl2d")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kefvm"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.34117648, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kefvm"]
+material = SubResource("StandardMaterial3D_kefvm")
+
+[sub_resource type="Gradient" id="Gradient_3rl2d"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kefvm"]
+gradient = SubResource("Gradient_3rl2d")
+
+[sub_resource type="Curve" id="Curve_4f5vm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15859033, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kin3o"]
+curve = SubResource("Curve_4f5vm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y5o6f"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kin3o")
+color_ramp = SubResource("GradientTexture1D_kefvm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3w1ee"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.34117648, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vmdsh"]
+material = SubResource("StandardMaterial3D_3w1ee")
 
 [node name="Child" type="CharacterBody3D" unique_id=1469781036]
 script = ExtResource("1_uwnm8")
@@ -17,5 +83,40 @@ mesh = SubResource("CapsuleMesh_7pvwq")
 [node name="trtr" parent="." unique_id=2071831859 instance=ExtResource("2_xoh2m")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1, 0)
 
+[node name="Body" parent="trtr" index="0" unique_id=283557525]
+surface_material_override/0 = ExtResource("3_3ejsn")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1487258617]
 shape = SubResource("CapsuleShape3D_7pvwq")
+
+[node name="monster" parent="." unique_id=1772371639 instance=ExtResource("4_qapw4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1, 0)
+visible = false
+
+[node name="Explode" type="GPUParticles3D" parent="." unique_id=1942253653]
+emitting = false
+amount = 500
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_qapw4")
+draw_pass_1 = SubResource("SphereMesh_kefvm")
+
+[node name="Transform" type="GPUParticles3D" parent="." unique_id=2091254496]
+emitting = false
+amount = 500
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y5o6f")
+draw_pass_1 = SubResource("SphereMesh_vmdsh")
+
+[node name="Explode2" type="AudioStreamPlayer3D" parent="." unique_id=70904398]
+stream = ExtResource("5_kefvm")
+volume_db = 10.0
+
+[node name="Reveal" type="AudioStreamPlayer3D" parent="." unique_id=411332179]
+stream = ExtResource("6_4f5vm")
+volume_db = 10.0
+
+[editable path="trtr"]

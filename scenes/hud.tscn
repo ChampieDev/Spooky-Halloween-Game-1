@@ -1,13 +1,25 @@
 [gd_scene format=3 uid="uid://cd3vdqsof311q"]
 
 [ext_resource type="Script" uid="uid://cw7lj4e74k8rr" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="FontFile" uid="uid://fijf5l24lfd1" path="res://assets/art/NV_Bitter-Regular.ttf" id="2_047uy"]
 [ext_resource type="Shader" uid="uid://cvko0murnoaw8" path="res://scenes/glitch.gdshader" id="2_oo0fn"]
 [ext_resource type="AudioStream" uid="uid://bw8e5yhgtaqrs" path="res://assets/audio/camera.mp3" id="3_5ysmq"]
+[ext_resource type="FontFile" uid="uid://bmuu83g8g4ogr" path="res://assets/art/NV_Bitter-Bold.ttf" id="3_047uy"]
+[ext_resource type="FontFile" uid="uid://borns5jqjl6dg" path="res://assets/art/NV_Bitter-Italic.ttf" id="4_5pdws"]
+[ext_resource type="Texture2D" uid="uid://bpnbqu6tahs7n" path="res://icon.svg" id="5_5pdws"]
+[ext_resource type="Texture2D" uid="uid://dvta0nljnc1vg" path="res://assets/art/newpaper.png" id="8_hd3ao"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cl70"]
 size = Vector2(1280, 80)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahhtf"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ysmq"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_047uy"]
 shader = ExtResource("2_oo0fn")
 shader_parameter/strength = 0.0050000002375
 shader_parameter/edge_falloff = true
@@ -15,33 +27,9 @@ shader_parameter/distortion_amount = 4.7499999933364734e-08
 
 [sub_resource type="Animation" id="Animation_ahhtf"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flash2:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_oo0fn"]
 resource_name = "camera_flash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flash2:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-0.03333334, 0, 0.26666668, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ysmq"]
 _data = {
@@ -72,20 +60,63 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 490
+theme_override_constants/margin_top = 576
+theme_override_constants/margin_right = 490
+theme_override_constants/margin_bottom = 64
 
-[node name="Flash2" type="ColorRect" parent="." unique_id=1527672999]
-modulate = Color(1, 1, 1, 0)
+[node name="DialoguePanel" type="MarginContainer" parent="MarginContainer" unique_id=1378946295]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/DialoguePanel" unique_id=360493065]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ysmq")
+
+[node name="Dialogue" type="RichTextLabel" parent="MarginContainer/DialoguePanel" unique_id=158834091]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_047uy")
+theme_override_fonts/bold_font = ExtResource("3_047uy")
+theme_override_fonts/italics_font = ExtResource("4_5pdws")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 34
+theme_override_font_sizes/italics_font_size = 32
+text = "Hello!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1989830670]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 288
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 288
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1694224589]
-modulate = Color(1, 1, 1, 0.21568628)
-material = SubResource("ShaderMaterial_ahhtf")
+[node name="Panel" type="Panel" parent="MarginContainer2" unique_id=1823145673]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" unique_id=1603246841]
+layout_mode = 2
+theme_override_constants/separation = 600
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer" unique_id=1942215702]
+layout_mode = 2
+texture = ExtResource("5_5pdws")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer2/HBoxContainer" unique_id=1914927969]
+layout_mode = 2
+texture = ExtResource("5_5pdws")
+stretch_mode = 2
+
+[node name="ChromAbb" type="ColorRect" parent="." unique_id=1982199545]
+material = SubResource("ShaderMaterial_047uy")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,6 +131,15 @@ libraries/ = SubResource("AnimationLibrary_5ysmq")
 stream = ExtResource("3_5ysmq")
 volume_db = 4.0
 pitch_scale = 0.75
+
+[node name="Voice" type="AudioStreamPlayer" parent="." unique_id=719268606]
+volume_db = -10.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1086999020]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("8_hd3ao")
 
 [connection signal="mouse_entered" from="MouseDetect" to="." method="_on_mouse_detect_mouse_entered"]
 [connection signal="mouse_exited" from="MouseDetect" to="." method="_on_mouse_detect_mouse_exited"]
