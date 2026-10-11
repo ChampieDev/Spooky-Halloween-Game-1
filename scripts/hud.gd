@@ -33,7 +33,7 @@ func _ready() -> void:
 	$Newspaper.show()
 	$anims.play("show_newspaper")
 	$Fade.show()
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(25.0).timeout
 	$Newspaper.hide()
 	Global.reset.emit()
 	await get_tree().create_timer(0.2).timeout

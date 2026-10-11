@@ -147,6 +147,14 @@ tracks/7/keys = {
 [sub_resource type="Animation" id="Animation_oo0fn"]
 resource_name = "camera_flash"
 
+[sub_resource type="Animation" id="Animation_eld54"]
+resource_name = "fade_to_black"
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_3swnk"]
+resource_name = "fade_to_clear"
+step = 0.05
+
 [sub_resource type="Animation" id="Animation_apjy4"]
 resource_name = "show_newspaper"
 length = 0.25
@@ -257,6 +265,8 @@ tracks/5/keys = {
 _data = {
 &"RESET": SubResource("Animation_ahhtf"),
 &"camera_flash": SubResource("Animation_oo0fn"),
+&"fade_to_black": SubResource("Animation_eld54"),
+&"fade_to_clear": SubResource("Animation_3swnk"),
 &"show_newspaper": SubResource("Animation_apjy4"),
 &"show_options": SubResource("Animation_0m4u7")
 }
