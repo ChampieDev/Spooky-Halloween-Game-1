@@ -153,12 +153,34 @@ pitch_scale = 0.75
 [node name="Voice" type="AudioStreamPlayer" parent="." unique_id=719268606]
 volume_db = -10.0
 
-[node name="Newspaper" type="TextureRect" parent="." unique_id=1086999020]
-visible = false
+[node name="Newspaper" type="MarginContainer" parent="." unique_id=1119653324]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Newspaper" type="TextureRect" parent="Newspaper" unique_id=1086999020]
+visible = false
+layout_mode = 2
 texture = ExtResource("8_hd3ao")
+
+[node name="TextContainer" type="MarginContainer" parent="Newspaper" unique_id=142378268]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 367
+theme_override_constants/margin_right = 599
+theme_override_constants/margin_bottom = 163
+
+[node name="Panel" type="Panel" parent="Newspaper/TextContainer" unique_id=539325336]
+visible = false
+layout_mode = 2
+
+[node name="Description" type="RichTextLabel" parent="Newspaper/TextContainer" unique_id=1933479059]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_047uy")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "The monsters are disguesed "
 
 [connection signal="mouse_entered" from="MouseDetect" to="." method="_on_mouse_detect_mouse_entered"]
 [connection signal="mouse_exited" from="MouseDetect" to="." method="_on_mouse_detect_mouse_exited"]

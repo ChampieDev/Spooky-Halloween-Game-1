@@ -3,6 +3,7 @@ extends Control
 @onready var dialogue: RichTextLabel = $MarginContainer/DialoguePanel/Dialogue
 @onready var candy_button: Button = $MarginContainer2/HBoxContainer/Candy
 @onready var bl_button: Button = $MarginContainer2/HBoxContainer/BlackLiquorice
+@onready var description: RichTextLabel = $Newspaper/TextContainer/Description
 
 var voice_1: AudioStreamMP3 = preload("res://assets/audio/voice.mp3")
 var voice_2: AudioStreamOggVorbis = preload("res://assets/audio/voice2.ogg")
@@ -11,6 +12,8 @@ var voices = [voice_1, voice_2]
 
 func _ready() -> void:
 	Global.start_dialogue.connect(display_text)
+	Global.generate_description.connect(_generate_description)
+	
 	$MarginContainer/DialoguePanel.hide()
 	
 	$Voice.stream = voices.pick_random()
@@ -66,3 +69,7 @@ func button_hover_off(type: String):
 	else:
 		var tween = create_tween()
 		tween.tween_property(bl_button, "scale", Vector2(1.0, 1.0), 0.1)
+		
+func _generate_description(eye_color: String, head_color: String, shirt_color: String, leg_color: String):
+	description.text = "The monsters are disguised as a children. One has a {shirt_color} shirt and a {head_color} head. The other has {eye_color} eyes and {leg_color} legs."
+	
