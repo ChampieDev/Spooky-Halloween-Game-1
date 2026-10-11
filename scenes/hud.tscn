@@ -142,6 +142,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Fade" type="ColorRect" parent="." unique_id=80987798]
+z_index = 999
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="anims" type="AnimationPlayer" parent="." unique_id=734343401]
 libraries/ = SubResource("AnimationLibrary_5ysmq")
 
@@ -154,12 +164,12 @@ pitch_scale = 0.75
 volume_db = -10.0
 
 [node name="Newspaper" type="MarginContainer" parent="." unique_id=1119653324]
+z_index = 1000
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Newspaper" type="TextureRect" parent="Newspaper" unique_id=1086999020]
-visible = false
 layout_mode = 2
 texture = ExtResource("8_hd3ao")
 

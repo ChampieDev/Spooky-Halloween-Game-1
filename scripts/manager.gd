@@ -8,10 +8,6 @@ var can_snap: bool = false
 
 func _ready() -> void:
 	Global.reset.connect(_reset)
-	_reset()
-	
-	$Player.global_position = stairs.global_position
-	
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("select") and can_snap:
@@ -44,6 +40,9 @@ func open_door():
 	Global.start_dialogue.emit("Trick or Treat!!")
 			
 func _reset():
+	$Player.global_position = stairs.global_position
+	$DoorHinge.rotation = Vector3.ZERO
+	$anims.play("look_up")
 	$DoorBell.play()
 	await $DoorBell.finished
 	go_to_door()

@@ -71,5 +71,13 @@ func button_hover_off(type: String):
 		tween.tween_property(bl_button, "scale", Vector2(1.0, 1.0), 0.1)
 		
 func _generate_description(eye_color: String, head_color: String, shirt_color: String, leg_color: String):
-	description.text = "The monsters are disguised as a children. One has a {shirt_color} shirt and a {head_color} head. The other has {eye_color} eyes and {leg_color} legs."
+	
+	var spooky_newspaper = "WARNING: This Halloween night, monsters invade. Beware of them and don't give them candy. They are disguised as children, the first wearing a " + shirt_color + " shirt, and has a " + head_color + " head. The second has " + eye_color + "-glowing eyes and " + leg_color + " legs. Be careful."
+	var boring_newspaper = "PUBLIC ADVISORY: On this Halloween evening, municipal authorities report monsters invade. Avoid contact and withhold confectionery items. They are currently disguised as local youth, the first suspect wearing a " + shirt_color + " shirt, and has a distinct " + head_color + " head. The second suspect features " + eye_color + "-glowing ocular units and " + leg_color + " lower extremities. Maintain caution."
+	var funny_newspaper = "THE DAILY SCREAM: Red alert, folks! Monsters invade our peaceful neighborhood tonight! Do NOT share your candy stash with these party crashers. They are disguised as regular children, but you can spot the first freaky imposter wearing a hideous " + shirt_color + " shirt, topped with a ridiculous " + head_color + " head. The second weirdo is wandering around with creeping " + eye_color + "-glowing eyes and goofy " + leg_color + " legs. Watch your back!"
+
+	
+	var newspaper_templates = [spooky_newspaper, boring_newspaper, funny_newspaper]
+	
+	description.text = newspaper_templates.pick_random()
 	
