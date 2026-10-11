@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bb76jlnnxlk7u" path="res://assets/art/monster.glb" id="4_qapw4"]
 [ext_resource type="AudioStream" uid="uid://dc344ote5ecim" path="res://assets/audio/dragon-studio-boom-copyright-free-487662.mp3" id="5_kefvm"]
 [ext_resource type="AudioStream" uid="uid://i2pmpy4dapsc" path="res://assets/audio/universfield-horror-impact-454854.mp3" id="6_4f5vm"]
+[ext_resource type="AudioStream" uid="uid://bo4oi3b218kcf" path="res://assets/audio/blegh.mp3" id="6_kefvm"]
+[ext_resource type="AudioStream" uid="uid://lnyfom4v022k" path="res://assets/audio/child_mmm.mp3" id="7_4f5vm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7pvwq"]
 
@@ -100,10 +102,222 @@ color_ramp = SubResource("GradientTexture1D_kefvm")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3w1ee"]
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(0, 0.34117648, 0, 1)
+albedo_color = Color(0.09827315, 0.00012856927, 0.2634855, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_vmdsh"]
 material = SubResource("StandardMaterial3D_3w1ee")
+
+[sub_resource type="Animation" id="Animation_4f5vm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transform:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("trtr:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("monster:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Explode:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Reveal:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Explode2:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("monster:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("monster:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5707964, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kin3o"]
+resource_name = "monster_die"
+length = 5.0
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transform:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("trtr:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("monster:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.5, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Explode:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Reveal:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Explode2:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_y5o6f"]
+resource_name = "monster_scare"
+length = 5.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("monster:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1, 0), Vector3(0, 0, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("monster:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3, 3.25, 3.5, 3.75, 4, 4.25, 4.5, 4.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5707964, 0), Vector3(-0.34906584, -1.5707964, 0), Vector3(0.34906584, -1.5707964, 0), Vector3(0, -1.5707964, 0), Vector3(0, -1.5707964, 0), Vector3(-0.34906584, -1.5707964, 0), Vector3(0.34906584, -1.5707964, 0), Vector3(0, -1.5707964, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5o6f"]
+_data = {
+&"RESET": SubResource("Animation_4f5vm"),
+&"monster_die": SubResource("Animation_kin3o"),
+&"monster_scare": SubResource("Animation_y5o6f")
+}
 
 [node name="Child" type="CharacterBody3D" unique_id=1469781036]
 script = ExtResource("1_uwnm8")
@@ -115,16 +329,16 @@ mesh = SubResource("CapsuleMesh_7pvwq")
 [node name="trtr" parent="." unique_id=2071831859 instance=ExtResource("2_xoh2m")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1, 0)
 
-[node name="Eyes" parent="trtr" index="0" unique_id=1789257855]
+[node name="Eyes" parent="trtr" index="0" unique_id=721932978]
 surface_material_override/0 = SubResource("StandardMaterial3D_4f5vm")
 
-[node name="Legs" parent="trtr" index="1" unique_id=281652117]
+[node name="Legs" parent="trtr" index="1" unique_id=1329732159]
 surface_material_override/0 = SubResource("StandardMaterial3D_y5o6f")
 
-[node name="Shirt" parent="trtr" index="2" unique_id=1954898813]
+[node name="Shirt" parent="trtr" index="2" unique_id=1787758693]
 surface_material_override/0 = SubResource("StandardMaterial3D_vmdsh")
 
-[node name="Head" parent="trtr" index="3" unique_id=998194850]
+[node name="Head" parent="trtr" index="3" unique_id=602812623]
 surface_material_override/0 = SubResource("StandardMaterial3D_t4gne")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1487258617]
@@ -146,7 +360,7 @@ draw_pass_1 = SubResource("SphereMesh_kefvm")
 [node name="Transform" type="GPUParticles3D" parent="." unique_id=2091254496]
 emitting = false
 amount = 500
-lifetime = 0.3
+lifetime = 0.25
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_y5o6f")
@@ -159,5 +373,17 @@ volume_db = 10.0
 [node name="Reveal" type="AudioStreamPlayer3D" parent="." unique_id=411332179]
 stream = ExtResource("6_4f5vm")
 volume_db = 10.0
+
+[node name="Gag" type="AudioStreamPlayer3D" parent="." unique_id=651350901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.2)
+stream = ExtResource("6_kefvm")
+pitch_scale = 0.9
+
+[node name="Mmm" type="AudioStreamPlayer3D" parent="." unique_id=1002196840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.2)
+stream = ExtResource("7_4f5vm")
+
+[node name="anims" type="AnimationPlayer" parent="." unique_id=1245129404]
+libraries/ = SubResource("AnimationLibrary_y5o6f")
 
 [editable path="trtr"]

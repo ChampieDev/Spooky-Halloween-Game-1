@@ -1,18 +1,20 @@
 [gd_scene format=3 uid="uid://btxwkmhpbbkpj"]
 
 [ext_resource type="Script" uid="uid://0wfpb43ainby" path="res://scripts/manager.gd" id="1_0wfyh"]
-[ext_resource type="Material" uid="uid://dlhk00fhmenq3" path="res://assets/art/textures/placeholder/placeholder.tres" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://cd3vdqsof311q" path="res://scenes/hud.tscn" id="2_tbgi4"]
+[ext_resource type="Material" uid="uid://bfms8xfvbr3g0" path="res://assets/art/textures/grass.tres" id="3_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://4xb5ltsjikra" path="res://scenes/player.tscn" id="3_jyhfs"]
-[ext_resource type="Material" uid="uid://cjgj5fn3fqdb0" path="res://assets/art/textures/placeholder/house_placeholder.tres" id="3_sugp2"]
-[ext_resource type="Material" uid="uid://c44mr47aqpvsl" path="res://assets/art/textures/placeholder/grass_placeholder.tres" id="4_o6xl0"]
-[ext_resource type="Material" uid="uid://cjte7wkkumgeq" path="res://assets/art/textures/placeholder/carpet_placeholder.tres" id="5_tipki"]
+[ext_resource type="Material" uid="uid://d0hwyhc8ysxcb" path="res://assets/art/textures/floor.tres" id="4_jbj1t"]
+[ext_resource type="Material" uid="uid://d0wau1o6aq143" path="res://assets/art/textures/rock.tres" id="5_muem4"]
+[ext_resource type="Material" uid="uid://blqpsjhe8vcuv" path="res://assets/art/textures/wall.tres" id="6_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://dcm5vrhoi5hhv" path="res://scenes/child.tscn" id="6_tefeu"]
 [ext_resource type="AudioStream" uid="uid://c44xj5y2kc681" path="res://assets/audio/step_player.mp3" id="8_ya4ey"]
 [ext_resource type="AudioStream" uid="uid://m4jq670tvwqn" path="res://assets/audio/door_open.mp3" id="9_choun"]
+[ext_resource type="Material" uid="uid://bo2re82t4wkpe" path="res://assets/art/textures/door.tres" id="9_jkv2x"]
 [ext_resource type="AudioStream" uid="uid://dn6b5buemjokv" path="res://assets/audio/door_slam.mp3" id="10_choun"]
 [ext_resource type="AudioStream" uid="uid://bsp5xni7k22ie" path="res://assets/audio/freesound_community-night-ambience-17064.mp3" id="12_eb6dy"]
 [ext_resource type="AudioStream" uid="uid://opm1vl6bknmv" path="res://assets/audio/DoorBell.wav" id="13_trceg"]
+[ext_resource type="PackedScene" uid="uid://chhunagwlovry" path="res://scenes/candy.tscn" id="14_a8y0u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tbgi4"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -201,29 +203,29 @@ mouse_filter = 2
 [node name="Floor" type="CSGBox3D" parent="." unique_id=499994908]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -13.5)
 size = Vector3(6, 1, 9)
-material = ExtResource("4_o6xl0")
+material = ExtResource("3_jkv2x")
 
 [node name="Floor3" type="CSGBox3D" parent="." unique_id=663375788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5.25)
 size = Vector3(6, 1, 7.5)
-material = ExtResource("1_o5qli")
+material = ExtResource("4_jbj1t")
 
 [node name="Floor4" type="CSGBox3D" parent="." unique_id=2101684246]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.2500002)
 size = Vector3(10, 1, 7.5)
-material = ExtResource("5_tipki")
+material = ExtResource("5_muem4")
 
 [node name="Grass" type="CSGBox3D" parent="." unique_id=272171288]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -9.75)
 size = Vector3(4, 1, 16.5)
-material = ExtResource("4_o6xl0")
+material = ExtResource("3_jkv2x")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=445362448]
 
 [node name="MainWall" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1592164116]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -1.4555001)
 size = Vector3(10, 3.5, 0.099999994)
-material = ExtResource("3_sugp2")
+material = ExtResource("6_dp3eg")
 
 [node name="DoorCutout" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1032184083]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -1.5)
@@ -231,10 +233,13 @@ operation = 2
 size = Vector3(1, 1.5, 0.6)
 
 [node name="Player" parent="." unique_id=416922472 instance=ExtResource("3_jyhfs")]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 1.4000001, -0.7)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, 0, 1.4000001, -0.7)
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="Player" unique_id=521738352]
 stream = ExtResource("8_ya4ey")
+
+[node name="CandySpawn" type="Marker3D" parent="Player" unique_id=1507607968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29999995, 0)
 
 [node name="DoorArea" type="Area3D" parent="." unique_id=1559321020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
@@ -260,7 +265,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.2500001, -1.5)
 [node name="Door" type="CSGBox3D" parent="DoorHinge" unique_id=169669701]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.044999957)
 size = Vector3(1, 1.5, 0.099999994)
-material = ExtResource("1_o5qli")
+material = ExtResource("9_jkv2x")
 
 [node name="anims" type="AnimationPlayer" parent="." unique_id=868068448]
 libraries/ = SubResource("AnimationLibrary_o6xl0")
@@ -274,6 +279,9 @@ omni_attenuation = 1.5
 
 [node name="Monster" parent="." unique_id=1469781036 instance=ExtResource("6_tefeu")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.90000004, -2)
+
+[node name="MouthMarker" type="Marker3D" parent="Monster" unique_id=177209388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
 [node name="DoorOpen" type="AudioStreamPlayer3D" parent="." unique_id=1991533031]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 1.2, -1.5)
@@ -292,6 +300,9 @@ autoplay = true
 
 [node name="DoorBell" type="AudioStreamPlayer" parent="." unique_id=185168464]
 stream = ExtResource("13_trceg")
+
+[node name="CandyItem" parent="." unique_id=897029099 instance=ExtResource("14_a8y0u")]
+unique_name_in_owner = true
 
 [connection signal="mouse_entered" from="DoorArea" to="." method="_on_door_area_mouse_entered"]
 [connection signal="mouse_exited" from="DoorArea" to="." method="_on_door_area_mouse_exited"]

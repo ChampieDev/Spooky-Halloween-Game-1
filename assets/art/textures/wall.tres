@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://blqpsjhe8vcuv"]
+
+[ext_resource type="Texture2D" uid="uid://mnrmbv15skja" path="res://assets/art/textures/Wood_04-128x128.png" id="1_gqkls"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_gqkls")
+uv1_triplanar = true

@@ -3,16 +3,22 @@ extends Node3D
 var can_change: bool = true
 var can_snap: bool = false
 
+var candy: Node
+
 @onready var stairs: Marker3D = $StairsMarker
 @onready var door: Marker3D = $DoorMarker
 
+
+var dialogue_options: Array[String] = ["Trick or Treat!!", "Just gimme the candy.", "..."]
+
 func _ready() -> void:
 	Global.reset.connect(_reset)
+	Global.feed.connect(feed)
 	
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("select") and can_snap:
-		Global.snap.emit()
-		get_tree().root.set_input_as_handled()
+	candy = find_child("CandyItem")
+	
+	candy.global_position = $Player/CandySpawn.global_position
+	candy.reparent($Player/CandySpawn, true)
 		
 func go_to_door():
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)
@@ -37,10 +43,12 @@ func open_door():
 	$anims.play("look_at_child")
 	can_change = true
 	can_snap = true
-	Global.start_dialogue.emit("Trick or Treat!!")
+	Global.start_dialogue.emit(dialogue_options.pick_random())
 			
 func _reset():
+	candy.show()
 	$Player.global_position = stairs.global_position
+	candy.global_position = $Player/CandySpawn.global_position
 	$DoorHinge.rotation = Vector3.ZERO
 	$anims.play("look_up")
 	$DoorBell.play()
@@ -48,4 +56,13 @@ func _reset():
 	go_to_door()
 	
 func feed(type: String):
-	pass
+	match type:
+		"candy":
+			candy.set_color(Color.ORANGE_RED)
+		"bl":
+			candy.set_color(Color.BLACK)
+	candy.reparent(self, true)
+	var tween = create_tween()
+	tween.tween_property(candy, "global_position", $Monster/MouthMarker.global_position, 0.1)
+	await tween.finished
+	candy.hide()

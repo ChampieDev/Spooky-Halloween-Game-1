@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bo2re82t4wkpe"]
+
+[ext_resource type="Texture2D" uid="uid://b3i1gwbqtroqj" path="res://assets/art/textures/Wood_24-128x128.png" id="1_hsano"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_hsano")
+uv1_triplanar = true

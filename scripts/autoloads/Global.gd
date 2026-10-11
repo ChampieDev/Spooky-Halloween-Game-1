@@ -33,7 +33,6 @@ func _ready() -> void:
 	avalible_nums.erase(choice_1)
 	monster_1 = child_colors["child_color_" + str(choice_1)]
 	
-	print(monster_1)
 	
 	var choice_2 = avalible_nums.pick_random()
 	avalible_nums.erase(choice_2)

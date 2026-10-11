@@ -3,11 +3,17 @@
 [ext_resource type="Script" uid="uid://cw7lj4e74k8rr" path="res://scripts/hud.gd" id="1_ahhtf"]
 [ext_resource type="FontFile" uid="uid://fijf5l24lfd1" path="res://assets/art/NV_Bitter-Regular.ttf" id="2_047uy"]
 [ext_resource type="Shader" uid="uid://cvko0murnoaw8" path="res://scenes/glitch.gdshader" id="2_oo0fn"]
-[ext_resource type="AudioStream" uid="uid://bw8e5yhgtaqrs" path="res://assets/audio/camera.mp3" id="3_5ysmq"]
 [ext_resource type="FontFile" uid="uid://bmuu83g8g4ogr" path="res://assets/art/NV_Bitter-Bold.ttf" id="3_047uy"]
 [ext_resource type="FontFile" uid="uid://borns5jqjl6dg" path="res://assets/art/NV_Bitter-Italic.ttf" id="4_5pdws"]
-[ext_resource type="Texture2D" uid="uid://bpnbqu6tahs7n" path="res://icon.svg" id="5_5pdws"]
+[ext_resource type="Texture2D" uid="uid://dkpelmndl52jk" path="res://assets/art/candy_icon.png" id="5_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://dyksypsoafnnv" path="res://assets/art/liquorice_icon.png" id="6_0i1j5"]
+[ext_resource type="Texture2D" uid="uid://blsmmgc5dkmit" path="res://assets/art/liquorice_icon_empty.png" id="6_mphia"]
+[ext_resource type="FontFile" uid="uid://dkyypgvmij38w" path="res://assets/art/NV_Bitter_R-BoldItalic.ttf" id="8_0m4u7"]
 [ext_resource type="Texture2D" uid="uid://dvta0nljnc1vg" path="res://assets/art/newpaper.png" id="8_hd3ao"]
+[ext_resource type="AudioStream" uid="uid://dwtxjtw8nm53l" path="res://assets/audio/u_u4pf5h7zip-click-345983.mp3" id="11_apjy4"]
+[ext_resource type="AudioStream" uid="uid://0o5u7bf28n2i" path="res://assets/audio/pixelcrusher-squish-pop-256410.mp3" id="12_5n1hp"]
+[ext_resource type="AudioStream" uid="uid://kplnak78k4a8" path="res://assets/audio/newspaper_hit.mp3" id="13_5n1hp"]
+[ext_resource type="AudioStream" uid="uid://csx0cc0knsfs" path="res://assets/audio/mouse_click.mp3" id="14_eld54"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mphia"]
 
@@ -26,9 +32,6 @@ Button/styles/hover = SubResource("StyleBoxEmpty_apjy4")
 Button/styles/normal = SubResource("StyleBoxEmpty_5n1hp")
 Button/styles/pressed = SubResource("StyleBoxEmpty_eld54")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cl70"]
-size = Vector2(1280, 80)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ysmq"]
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 12
@@ -44,14 +47,218 @@ shader_parameter/distortion_amount = 4.7499999933364734e-08
 
 [sub_resource type="Animation" id="Animation_ahhtf"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CandySelect/HBoxContainer/Candy:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-400, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CandySelect/HBoxContainer/BlackLiquorice:offset_transform_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(400, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CandyLandSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BLLandSFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Newspaper:offset_transform_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -800)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("NewspaperSFX:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CandySelect/HBoxContainer/Candy:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CandySelect/HBoxContainer/BlackLiquorice:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_oo0fn"]
 resource_name = "camera_flash"
 
+[sub_resource type="Animation" id="Animation_apjy4"]
+resource_name = "show_newspaper"
+length = 0.25
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Newspaper:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -800), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewspaperSFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.22),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0m4u7"]
+resource_name = "show_options"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CandySelect/HBoxContainer/Candy:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-400, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CandySelect/HBoxContainer/BlackLiquorice:offset_transform_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(400, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CandyLandSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.125),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BLLandSFX:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CandySelect/HBoxContainer/Candy:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CandySelect/HBoxContainer/BlackLiquorice:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ysmq"]
 _data = {
 &"RESET": SubResource("Animation_ahhtf"),
-&"camera_flash": SubResource("Animation_oo0fn")
+&"camera_flash": SubResource("Animation_oo0fn"),
+&"show_newspaper": SubResource("Animation_apjy4"),
+&"show_options": SubResource("Animation_0m4u7")
 }
 
 [node name="HUD" type="Control" unique_id=749604785]
@@ -64,13 +271,6 @@ grow_vertical = 2
 theme = SubResource("Theme_hd3ao")
 script = ExtResource("1_ahhtf")
 
-[node name="MouseDetect" type="Area2D" parent="." unique_id=1172072711]
-position = Vector2(0, 720)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetect" unique_id=520854876]
-position = Vector2(640, -40)
-shape = SubResource("RectangleShape2D_3cl70")
-
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1395372163]
 layout_mode = 1
 anchors_preset = 15
@@ -78,6 +278,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 490
 theme_override_constants/margin_top = 576
 theme_override_constants/margin_right = 490
@@ -102,37 +303,71 @@ text = "Hello!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1989830670]
+[node name="CandySelect" type="MarginContainer" parent="." unique_id=1989830670]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 288
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 288
 
-[node name="Panel" type="Panel" parent="MarginContainer2" unique_id=1823145673]
+[node name="Panel" type="Panel" parent="CandySelect" unique_id=1823145673]
 visible = false
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2" unique_id=1603246841]
+[node name="HBoxContainer" type="HBoxContainer" parent="CandySelect" unique_id=1603246841]
 layout_mode = 2
 theme_override_constants/separation = 600
 alignment = 1
 
-[node name="Candy" type="Button" parent="MarginContainer2/HBoxContainer" unique_id=98937762]
+[node name="Candy" type="Button" parent="CandySelect/HBoxContainer" unique_id=98937762]
 layout_mode = 2
 offset_transform_enabled = true
-icon = ExtResource("5_5pdws")
+offset_transform_position = Vector2(-400, 0)
+offset_transform_pivot = Vector2(64, 64)
+icon = ExtResource("5_0i1j5")
 
-[node name="BlackLiquorice" type="Button" parent="MarginContainer2/HBoxContainer" unique_id=211391031]
+[node name="BlackLiquorice" type="Button" parent="CandySelect/HBoxContainer" unique_id=211391031]
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-icon = ExtResource("5_5pdws")
+offset_transform_enabled = true
+offset_transform_position = Vector2(400, 0)
+
+[node name="BLLeft" type="TextureProgressBar" parent="CandySelect/HBoxContainer/BlackLiquorice" unique_id=1209201639]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 8.0
+offset_right = 128.0
+offset_bottom = 136.0
+mouse_filter = 2
+max_value = 4.0
+value = 3.0
+texture_under = ExtResource("6_mphia")
+texture_progress = ExtResource("6_0i1j5")
+
+[node name="BLCount" type="RichTextLabel" parent="CandySelect/HBoxContainer/BlackLiquorice" unique_id=194033302]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+offset_top = 8.0
+offset_right = 128.0
+offset_bottom = 136.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 0.30980393, 0.2, 1)
+theme_override_fonts/normal_font = ExtResource("8_0m4u7")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[wave amp=20.0 freq=3.0]1[/wave]"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ChromAbb" type="ColorRect" parent="." unique_id=1982199545]
+z_index = 1001
 material = SubResource("ShaderMaterial_047uy")
 layout_mode = 1
 anchors_preset = 15
@@ -143,6 +378,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Fade" type="ColorRect" parent="." unique_id=80987798]
+visible = false
 z_index = 999
 layout_mode = 1
 anchors_preset = 15
@@ -150,15 +386,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="anims" type="AnimationPlayer" parent="." unique_id=734343401]
 libraries/ = SubResource("AnimationLibrary_5ysmq")
-
-[node name="Flash" type="AudioStreamPlayer" parent="." unique_id=1557229012]
-stream = ExtResource("3_5ysmq")
-volume_db = 4.0
-pitch_scale = 0.75
 
 [node name="Voice" type="AudioStreamPlayer" parent="." unique_id=719268606]
 volume_db = -10.0
@@ -168,6 +400,9 @@ z_index = 1000
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -800)
+mouse_filter = 2
 
 [node name="Newspaper" type="TextureRect" parent="Newspaper" unique_id=1086999020]
 layout_mode = 2
@@ -188,11 +423,24 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("2_047uy")
+theme_override_fonts/bold_font = ExtResource("3_047uy")
 theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
 bbcode_enabled = true
 text = "The monsters are disguesed "
 
-[connection signal="mouse_entered" from="MouseDetect" to="." method="_on_mouse_detect_mouse_entered"]
-[connection signal="mouse_exited" from="MouseDetect" to="." method="_on_mouse_detect_mouse_exited"]
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/Candy" to="." method="_on_candy_pressed"]
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/BlackLiquorice" to="." method="_on_black_liquorice_pressed"]
+[node name="CandyLandSFX" type="AudioStreamPlayer" parent="." unique_id=158448518]
+stream = ExtResource("11_apjy4")
+
+[node name="BLLandSFX" type="AudioStreamPlayer" parent="." unique_id=1606010678]
+stream = ExtResource("12_5n1hp")
+
+[node name="NewspaperSFX" type="AudioStreamPlayer" parent="." unique_id=171851599]
+stream = ExtResource("13_5n1hp")
+
+[node name="Click" type="AudioStreamPlayer" parent="." unique_id=1729966963]
+stream = ExtResource("14_eld54")
+pitch_scale = 0.9
+
+[connection signal="pressed" from="CandySelect/HBoxContainer/Candy" to="." method="_on_candy_pressed"]
+[connection signal="pressed" from="CandySelect/HBoxContainer/BlackLiquorice" to="." method="_on_black_liquorice_pressed"]
