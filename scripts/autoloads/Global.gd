@@ -13,3 +13,5 @@ signal snap
 signal reset
 
 signal start_dialogue(message: String)
+
+signal feed(type: String)

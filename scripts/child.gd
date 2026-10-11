@@ -3,10 +3,9 @@ extends CharacterBody3D
 var mat_1: StandardMaterial3D = preload("res://assets/art/textures/child_1.tres")
 var mat_2: StandardMaterial3D = preload("res://assets/art/textures/child_2.tres")
 
-var mats: Array[StandardMaterial3D] = [mat_1, mat_2]
+var mats: Array[StandardMaterial3D] = [mat_1]
 
 func _ready() -> void:
-	$trtr/Body.set_surface_override_material(0, mats.pick_random())
 	await get_tree().create_timer(5.0).timeout
 	transform(randi_range(0, 1))
 	

@@ -2,12 +2,44 @@
 
 [ext_resource type="Script" uid="uid://dluyl3qm1ulm6" path="res://scripts/child.gd" id="1_uwnm8"]
 [ext_resource type="PackedScene" uid="uid://ce7402v0li7wu" path="res://assets/art/trtr.blend" id="2_xoh2m"]
-[ext_resource type="Material" uid="uid://b30romsiupuj1" path="res://assets/art/textures/child_1.tres" id="3_3ejsn"]
 [ext_resource type="PackedScene" uid="uid://bb76jlnnxlk7u" path="res://assets/art/monster.glb" id="4_qapw4"]
 [ext_resource type="AudioStream" uid="uid://dc344ote5ecim" path="res://assets/audio/dragon-studio-boom-copyright-free-487662.mp3" id="5_kefvm"]
 [ext_resource type="AudioStream" uid="uid://i2pmpy4dapsc" path="res://assets/audio/universfield-horror-impact-454854.mp3" id="6_4f5vm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7pvwq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3rl2d"]
+load_path = "res://.godot/imported/LbUJ38RE.png-5d639bc67dae6b4a23dc9c00d9492fdc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4f5vm"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("CompressedTexture2D_3rl2d")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kin3o"]
+load_path = "res://.godot/imported/LbUJ38RE.png-5d639bc67dae6b4a23dc9c00d9492fdc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5o6f"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("CompressedTexture2D_kin3o")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3w1ee"]
+load_path = "res://.godot/imported/LbUJ38RE.png-5d639bc67dae6b4a23dc9c00d9492fdc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmdsh"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 1, 1)
+albedo_texture = SubResource("CompressedTexture2D_3w1ee")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s20de"]
+load_path = "res://.godot/imported/LbUJ38RE.png-5d639bc67dae6b4a23dc9c00d9492fdc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t4gne"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("CompressedTexture2D_s20de")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7pvwq"]
 
@@ -83,8 +115,17 @@ mesh = SubResource("CapsuleMesh_7pvwq")
 [node name="trtr" parent="." unique_id=2071831859 instance=ExtResource("2_xoh2m")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1, 0)
 
-[node name="Body" parent="trtr" index="0" unique_id=283557525]
-surface_material_override/0 = ExtResource("3_3ejsn")
+[node name="Eyes" parent="trtr" index="0" unique_id=1789257855]
+surface_material_override/0 = SubResource("StandardMaterial3D_4f5vm")
+
+[node name="Legs" parent="trtr" index="1" unique_id=281652117]
+surface_material_override/0 = SubResource("StandardMaterial3D_y5o6f")
+
+[node name="Shirt" parent="trtr" index="2" unique_id=1954898813]
+surface_material_override/0 = SubResource("StandardMaterial3D_vmdsh")
+
+[node name="Head" parent="trtr" index="3" unique_id=998194850]
+surface_material_override/0 = SubResource("StandardMaterial3D_t4gne")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1487258617]
 shape = SubResource("CapsuleShape3D_7pvwq")

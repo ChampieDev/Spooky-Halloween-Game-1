@@ -47,3 +47,6 @@ func _reset():
 	$DoorBell.play()
 	await $DoorBell.finished
 	go_to_door()
+	
+func feed(type: String):
+	pass

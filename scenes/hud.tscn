@@ -9,6 +9,23 @@
 [ext_resource type="Texture2D" uid="uid://bpnbqu6tahs7n" path="res://icon.svg" id="5_5pdws"]
 [ext_resource type="Texture2D" uid="uid://dvta0nljnc1vg" path="res://assets/art/newpaper.png" id="8_hd3ao"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mphia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m4u7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_apjy4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5n1hp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eld54"]
+
+[sub_resource type="Theme" id="Theme_hd3ao"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_mphia")
+Button/styles/focus = SubResource("StyleBoxEmpty_0m4u7")
+Button/styles/hover = SubResource("StyleBoxEmpty_apjy4")
+Button/styles/normal = SubResource("StyleBoxEmpty_5n1hp")
+Button/styles/pressed = SubResource("StyleBoxEmpty_eld54")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3cl70"]
 size = Vector2(1280, 80)
 
@@ -44,6 +61,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_hd3ao")
 script = ExtResource("1_ahhtf")
 
 [node name="MouseDetect" type="Area2D" parent="." unique_id=1172072711]
@@ -105,15 +123,14 @@ layout_mode = 2
 theme_override_constants/separation = 600
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer" unique_id=1942215702]
+[node name="Candy" type="Button" parent="MarginContainer2/HBoxContainer" unique_id=98937762]
 layout_mode = 2
-texture = ExtResource("5_5pdws")
-stretch_mode = 2
+offset_transform_enabled = true
+icon = ExtResource("5_5pdws")
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer2/HBoxContainer" unique_id=1914927969]
+[node name="BlackLiquorice" type="Button" parent="MarginContainer2/HBoxContainer" unique_id=211391031]
 layout_mode = 2
-texture = ExtResource("5_5pdws")
-stretch_mode = 2
+icon = ExtResource("5_5pdws")
 
 [node name="ChromAbb" type="ColorRect" parent="." unique_id=1982199545]
 material = SubResource("ShaderMaterial_047uy")
@@ -123,6 +140,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="anims" type="AnimationPlayer" parent="." unique_id=734343401]
 libraries/ = SubResource("AnimationLibrary_5ysmq")
@@ -135,7 +153,8 @@ pitch_scale = 0.75
 [node name="Voice" type="AudioStreamPlayer" parent="." unique_id=719268606]
 volume_db = -10.0
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1086999020]
+[node name="Newspaper" type="TextureRect" parent="." unique_id=1086999020]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -143,3 +162,5 @@ texture = ExtResource("8_hd3ao")
 
 [connection signal="mouse_entered" from="MouseDetect" to="." method="_on_mouse_detect_mouse_entered"]
 [connection signal="mouse_exited" from="MouseDetect" to="." method="_on_mouse_detect_mouse_exited"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/Candy" to="." method="_on_candy_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/BlackLiquorice" to="." method="_on_black_liquorice_pressed"]

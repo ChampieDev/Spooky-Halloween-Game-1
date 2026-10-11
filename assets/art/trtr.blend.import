@@ -43,8 +43,8 @@ _subresources={
 "materials": {
 "Material": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://assets/art/textures/child_2.tres",
-"use_external/path": "uid://byex3vhrpyc72"
+"use_external/fallback_path": "res://assets/art/textures/child_1.tres",
+"use_external/path": "uid://b30romsiupuj1"
 }
 }
 }
