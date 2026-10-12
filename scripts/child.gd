@@ -73,6 +73,7 @@ func transform(dead: bool = false):
 		$monster.show()
 		$anims.play("monster_scare")
 		await $anims.animation_finished
+		get_tree().quit()
 	
 	await get_tree().create_timer(2.0).timeout
 	if self_id < 9:

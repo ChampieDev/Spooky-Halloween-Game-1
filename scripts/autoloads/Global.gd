@@ -18,6 +18,7 @@ signal door_close
 signal snap
 
 signal reset
+signal start
 
 signal start_dialogue(message: String)
 
@@ -27,6 +28,9 @@ signal generate_description(eye_color: String, head_color: String, shirt_color: 
 
 func _ready() -> void:
 	
+	start.connect(_start)
+	
+func _start():
 	await get_tree().create_timer(0.1).timeout
 	
 	var choice_1 = avalible_nums.pick_random()

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://fd50gcuu3tuh"]
+
+[ext_resource type="Script" uid="uid://b303suje6lktg" path="res://scripts/home.gd" id="1_krot7"]
+[ext_resource type="FontFile" uid="uid://fijf5l24lfd1" path="res://assets/art/NV_Bitter-Regular.ttf" id="2_reixx"]
+[ext_resource type="FontFile" uid="uid://dkyypgvmij38w" path="res://assets/art/NV_Bitter_R-BoldItalic.ttf" id="3_uhids"]
+[ext_resource type="FontFile" uid="uid://borns5jqjl6dg" path="res://assets/art/NV_Bitter-Italic.ttf" id="4_yxilm"]
+
+[node name="Home" type="Control" unique_id=1662113265]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_krot7")
+
+[node name="Play" type="Button" parent="." unique_id=1650941745]
+layout_mode = 0
+offset_left = 594.0
+offset_top = 379.0
+offset_right = 635.0
+offset_bottom = 410.0
+theme_override_fonts/font = ExtResource("2_reixx")
+text = "Play"
+
+[node name="Label" type="Label" parent="." unique_id=873331127]
+layout_mode = 0
+offset_left = 407.0
+offset_top = 214.0
+offset_right = 849.0
+offset_bottom = 343.0
+theme_override_fonts/font = ExtResource("3_uhids")
+theme_override_font_sizes/font_size = 45
+text = "Wrong Door, Kid"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Label" unique_id=1713138785]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 78.0
+offset_right = 439.0
+offset_bottom = 207.0
+theme_override_fonts/font = ExtResource("4_yxilm")
+theme_override_font_sizes/font_size = 16
+text = "(not offical title)"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

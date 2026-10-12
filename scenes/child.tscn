@@ -329,16 +329,16 @@ mesh = SubResource("CapsuleMesh_7pvwq")
 [node name="trtr" parent="." unique_id=2071831859 instance=ExtResource("2_xoh2m")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1, 0)
 
-[node name="Eyes" parent="trtr" index="0" unique_id=721932978]
+[node name="Eyes" parent="trtr" index="0" unique_id=906777980]
 surface_material_override/0 = SubResource("StandardMaterial3D_4f5vm")
 
-[node name="Legs" parent="trtr" index="1" unique_id=1329732159]
+[node name="Legs" parent="trtr" index="1" unique_id=842540672]
 surface_material_override/0 = SubResource("StandardMaterial3D_y5o6f")
 
-[node name="Shirt" parent="trtr" index="2" unique_id=1787758693]
+[node name="Shirt" parent="trtr" index="2" unique_id=939533964]
 surface_material_override/0 = SubResource("StandardMaterial3D_vmdsh")
 
-[node name="Head" parent="trtr" index="3" unique_id=602812623]
+[node name="Head" parent="trtr" index="3" unique_id=1231344927]
 surface_material_override/0 = SubResource("StandardMaterial3D_t4gne")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1487258617]
